@@ -57,7 +57,7 @@ namespace epi_amplifier_crestron_amp8xxx
 
         public static void LoadPlugin()
         {
-            DeviceFactory.AddFactoryForType("Amp8xxx", CrestronAmplifierDevice.Build);
+            DeviceFactory.AddFactoryForType("amp8xxx", CrestronAmplifierDevice.Build);
         }
 
         public static CrestronAmplifierDevice Build(DeviceConfig config)
