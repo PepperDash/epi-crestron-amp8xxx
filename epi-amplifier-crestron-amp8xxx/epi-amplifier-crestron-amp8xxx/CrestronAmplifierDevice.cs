@@ -6,6 +6,7 @@ using Crestron.SimplSharp;
 using Crestron.SimplSharpPro;
 using PepperDash.Core;
 using PepperDash.Essentials.Core;
+using PepperDash.Essentials.Core.Bridges;
 using PepperDash.Essentials.Core.Devices;
 using PepperDash.Essentials.Devices.Common.Codec;
 using PepperDash.Essentials.Devices.Common.DSP;
@@ -22,7 +23,7 @@ using epi_amplifier_crestron_amp8xxx.Bridge;
 
 namespace epi_amplifier_crestron_amp8xxx
 {
-    public class CrestronAmplifierDevice : CrestronGenericBaseDevice, IBridge
+    public class CrestronAmplifierDevice : CrestronGenericBaseDevice, IBridgeAdvanced
     {
         public Amp8xxxBase _device { get; protected set; }
         protected DeviceConfig _config;
@@ -170,7 +171,7 @@ namespace epi_amplifier_crestron_amp8xxx
 
         #region IBridge Members
 
-        public void LinkToApi(BasicTriList trilist, uint joinStart, string joinMapKey)
+        public void LinkToApi(BasicTriList trilist, uint joinStart, string joinMapKey, EiscApiAdvanced bridge)
         {
             this.LinkToApiExt(trilist, joinStart, joinMapKey);
         }

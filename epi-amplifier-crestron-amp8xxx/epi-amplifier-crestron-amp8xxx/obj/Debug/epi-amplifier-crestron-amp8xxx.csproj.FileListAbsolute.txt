@@ -22,3 +22,26 @@ C:\Development\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi
 C:\Development\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.DM.dll
 C:\Development\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\obj\Debug\epi-amplifier-crestron-amp8xxx.dll
 C:\Development\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\obj\Debug\epi-amplifier-crestron-amp8xxx.pdb
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\epi-amplifier-crestron-amp8xxx.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\epi-amplifier-crestron-amp8xxx.pdb
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Essentials Devices Common.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\PepperDash_Core.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\PepperDash_Essentials_Core.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\PepperDash_Essentials_DM.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\PepperDashEssentials.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.Lighting.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\SimplSharpSQLHelperInterface.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.Fusion.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.Shades.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.Remotes.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.EthernetCommunications.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.ThreeSeriesCards.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.DeviceSupport.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\SimplSharpTimerEventInterface.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.Gateways.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.GeneralIO.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.UI.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.DM.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\obj\Debug\epi-amplifier-crestron-amp8xxx.dll
+C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\obj\Debug\epi-amplifier-crestron-amp8xxx.pdb
