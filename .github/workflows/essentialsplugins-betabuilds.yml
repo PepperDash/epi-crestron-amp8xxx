@@ -77,7 +77,7 @@ jobs:
             }
           }      
           echo "VERSION=$newVersionString" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          echo "::set-output name=version::$version"
+          echo "::set-output name=version::$newVersionString"
       # Use the version number to set the version of the assemblies
       - name: Update AssemblyInfo.cs
         shell: powershell
