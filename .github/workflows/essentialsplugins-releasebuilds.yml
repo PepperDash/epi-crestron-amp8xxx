@@ -6,7 +6,7 @@ on:
       - created
     branches:
       - main
-
+      
 env:
   # Do not edit this, we're just creating it here
   VERSION: 0.0.0-buildtype-buildnumber
