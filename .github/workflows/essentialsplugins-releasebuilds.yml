@@ -5,7 +5,7 @@ on:
     types:
       - created
     branches:
-      - [master]
+      - main
 
 env:
   # Do not edit this, we're just creating it here
