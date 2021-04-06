@@ -45,3 +45,5 @@ C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-ampl
 C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\obj\Debug\epi-amplifier-crestron-amp8xxx.dll
 C:\Users\awelker\Documents\PDEngineering\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\obj\Debug\epi-amplifier-crestron-amp8xxx.pdb
+C:\Development\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.Remotes.dll
+C:\Development\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\epi-amplifier-crestron-amp8xxx\bin\Debug\Crestron.SimplSharpPro.ThreeSeriesCards.dll

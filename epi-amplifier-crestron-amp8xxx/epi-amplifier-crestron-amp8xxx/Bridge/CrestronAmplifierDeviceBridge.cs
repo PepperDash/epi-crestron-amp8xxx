@@ -18,30 +18,7 @@ namespace epi_amplifier_crestron_amp8xxx.Bridge
     {
         public static void LinkToApiExt(this CrestronAmplifierDevice ampDevice, BasicTriList trilist, uint joinStart, string joinMapKey)
         {
-            CrestronAmplifierJoinMap joinMap = new CrestronAmplifierJoinMap();
-
-            Debug.Console(1, ampDevice, "Linking to Trilist '{0}'", trilist.ID.ToString("X"));
-            joinMap.OffsetJoinNumbers(joinStart);
-
-            ampDevice.CommunicationMonitor.IsOnlineFeedback.LinkInputSig(trilist.BooleanInput[joinMap.Online]);
-            trilist.StringInput[(joinMap.Name)].StringValue = ampDevice.Name;
-            ampDevice.TemperatureFeedback.LinkInputSig(trilist.UShortInput[joinMap.Temperature]);
-
-            foreach (var item in ampDevice._device.Amplifiers)
-            {
-                var i = item;
-                uint index = i.Number;
-                var offset = ((index - 1) * 8);
-                Debug.Console(2, ampDevice, "Amp Output {0} Connect", i.Number);
-                ampDevice.OverCurrentFaultFeedback[index].LinkInputSig(trilist.BooleanInput[joinMap.CurrentFault + offset]);
-                ampDevice.TemperatureFaultFeedback[index].LinkInputSig(trilist.BooleanInput[joinMap.TempFault + offset]);
-                ampDevice.DcFaultFeedback[index].LinkInputSig(trilist.BooleanInput[joinMap.DcFault + offset]);
-                ampDevice.VoltageFaultFeedback[index].LinkInputSig(trilist.BooleanInput[joinMap.VoltageFault]);
-            }
-
-            {
-
-            }
+            
 
 
         }
