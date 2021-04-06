@@ -1,33 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Crestron.SimplSharp;
+﻿using System.Collections.Generic;
 using Crestron.SimplSharpPro;
 using PepperDash.Core;
 using PepperDash.Essentials.Core;
 using PepperDash.Essentials.Core.Bridges;
-using PepperDash.Essentials.Core.Devices;
-using PepperDash.Essentials.Devices.Common.Codec;
-using PepperDash.Essentials.Devices.Common.DSP;
-using System.Text.RegularExpressions;
-using Crestron.SimplSharp.Reflection;
 using Newtonsoft.Json;
 using PepperDash.Essentials.Core.Config;
-using PepperDash.Essentials.Bridges;
 using Crestron.SimplSharpPro.DeviceSupport;
-using Crestron.SimplSharpPro.Diagnostics;
 using Crestron.SimplSharpPro.AudioDistribution;
-using epi_amplifier_crestron_amp8xxx.Bridge;
+using epi_amplifier_crestron_amp8xxx.Bridge.JoinMaps;
 
 
 namespace epi_amplifier_crestron_amp8xxx
 {
     public class CrestronAmplifierDevice : CrestronGenericBaseDevice, IBridgeAdvanced
     {
-        public Amp8xxxBase _device { get; protected set; }
-        protected DeviceConfig _config;
-        protected AmpPropertiesConfig _propsConfig;
+        public Amp8xxxBase Device { get; protected set; }
+        protected DeviceConfig Config;
+        protected AmpPropertiesConfig PropsConfig;
 
         public Dictionary<uint, BoolFeedback> ClipFeedback;
 
@@ -56,57 +45,19 @@ namespace epi_amplifier_crestron_amp8xxx
             }
         }
 
-        public static void LoadPlugin()
-        {
-            DeviceFactory.AddFactoryForType("amp8xxx", CrestronAmplifierDevice.Build);
-        }
 
-        public static CrestronAmplifierDevice Build(DeviceConfig config)
-        {
-            var device = CrestronAmplifierDevice.GetAmpDevice(config);
-            return new CrestronAmplifierDevice(config, device);
-        }
 
         public CrestronAmplifierDevice(DeviceConfig config, Amp8xxxBase device)
             : base(config.Key, config.Name, device)
         {
-            _device = device;
-            _config = config;
-            _propsConfig = JsonConvert.DeserializeObject<AmpPropertiesConfig>(config.Properties.ToString());
+            Device = device;
+            Config = config;
+            PropsConfig = JsonConvert.DeserializeObject<AmpPropertiesConfig>(config.Properties.ToString());
 
             Init();
         }
 
-        protected static Amp8xxxBase GetAmpDevice(DeviceConfig config)
-        {
-            var deviceConfig = JsonConvert.DeserializeObject<AmpPropertiesConfig>(config.Properties.ToString());
-
-            try
-            {
-                var ampDeviceType = typeof(Amp8xxxBase)
-                    .GetCType()
-                    .Assembly
-                    .GetTypes()
-                    .FirstOrDefault(x => x.Name.Equals(deviceConfig.Model, StringComparison.OrdinalIgnoreCase));
-
-                if (ampDeviceType == null) throw new NullReferenceException();
-                if (deviceConfig.Control.IpId == null) throw new Exception("The IPID for this device must be defined");
-
-                var newDevice = ampDeviceType
-                    .GetConstructor(new CType[] { typeof(ushort).GetCType(), typeof(CrestronControlSystem) })
-                    .Invoke(new object[] { Convert.ToUInt16(deviceConfig.Control.IpId, 16), Global.ControlSystem });
-
-                var ampDevice = newDevice as Amp8xxxBase;
-                if (ampDevice == null) throw new NullReferenceException("Could not find the base Amplifier type");
-
-
-                return ampDevice;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        
 
         private void Init()
         {
@@ -117,7 +68,7 @@ namespace epi_amplifier_crestron_amp8xxx
             DcFaultFeedback = new Dictionary<uint,BoolFeedback>();
             ClippingFeedback = new Dictionary<uint, BoolFeedback>();
 
-            foreach (var item in _device.Amplifiers)
+            foreach (var item in Device.Amplifiers)
             {
                 var i = item;
                 OverCurrentFaultFeedback.Add(i.Number, new BoolFeedback(() => i.OverCurrentFaultFeedback.BoolValue));
@@ -126,44 +77,44 @@ namespace epi_amplifier_crestron_amp8xxx
                 DcFaultFeedback.Add(i.Number, new BoolFeedback(() => i.DcFaultFeedback.BoolValue));
                 ClippingFeedback.Add(i.Number, new BoolFeedback(() => i.ClippingFeedback.BoolValue));
             }
-            foreach (var item in _device.AudioInputs)
+            foreach (var item in Device.AudioInputs)
             {
                 var i = item;
 
                 ClipFeedback.Add(i.Number, new BoolFeedback(() => i.ClipFeedback.BoolValue));
             }
-            TemperatureFeedback = new IntFeedback(() => _device.TemperatureFeedback.UShortValue);
-            _device.BaseEvent += new BaseEventHandler(_device_BaseEvent);
+            TemperatureFeedback = new IntFeedback(() => Device.TemperatureFeedback.UShortValue);
+            Device.BaseEvent += _device_BaseEvent;
         }
 
 
         void _device_BaseEvent(GenericBase device, BaseEventArgs args)
         {
-            if (args.EventId == Amp8xxxBase.ClipFeedbackEventId)
+            if (args.EventId == CommercialAmplifier.ClipFeedbackEventId)
             {
                 ClipFeedback[(uint)args.Index].FireUpdate();
             }
-            if (args.EventId == Amp8xxxBase.DcFaultFeedbackEventId)
+            if (args.EventId == CommercialAmplifier.DcFaultFeedbackEventId)
             {
                 DcFaultFeedback[(uint)args.Index].FireUpdate();
             }
-            if (args.EventId == Amp8xxxBase.OverCurrentFaultFeedbackEventId)
+            if (args.EventId == CommercialAmplifier.OverCurrentFaultFeedbackEventId)
             {
                 OverCurrentFaultFeedback[(uint)args.Index].FireUpdate();
             }
-            if (args.EventId == Amp8xxxBase.TemperatureFaultFeedbackEventId)
+            if (args.EventId == CommercialAmplifier.TemperatureFaultFeedbackEventId)
             {
                 TemperatureFaultFeedback[(uint)args.Index].FireUpdate();
             }
-            if (args.EventId == Amp8xxxBase.VoltageFaultFeedbackEventId)
+            if (args.EventId == CommercialAmplifier.VoltageFaultFeedbackEventId)
             {
                 VoltageFaultFeedback[(uint)args.Index].FireUpdate();
             }
-            if (args.EventId == Amp8xxxBase.ClippingFeedbackEventId)
+            if (args.EventId == CommercialAmplifier.ClippingFeedbackEventId)
             {
                 ClippingFeedback[(uint)args.Index].FireUpdate();
             }
-            if (args.EventId == Amp8xxxBase.TemperatureFeedbackEventId)
+            if (args.EventId == CommercialAmplifier.TemperatureFeedbackEventId)
             {
                 TemperatureFeedback.FireUpdate();
             }
@@ -173,7 +124,31 @@ namespace epi_amplifier_crestron_amp8xxx
 
         public void LinkToApi(BasicTriList trilist, uint joinStart, string joinMapKey, EiscApiAdvanced bridge)
         {
-            this.LinkToApiExt(trilist, joinStart, joinMapKey);
+            var joinMap = new CrestronAmplifierJoinMapAdv(joinStart);
+
+            Debug.Console(1, this, "Linking to Trilist '{0}'", trilist.ID.ToString("X"));
+
+            if (bridge != null)
+            {
+                bridge.AddJoinMap(Key, joinMap);
+            }
+
+            CommunicationMonitor.IsOnlineFeedback.LinkInputSig(trilist.BooleanInput[joinMap.Online.JoinNumber]);
+            trilist.StringInput[(joinMap.Name.JoinNumber)].StringValue = Name;
+            TemperatureFeedback.LinkInputSig(trilist.UShortInput[joinMap.Temperature.JoinNumber]);
+
+            foreach (var item in Device.Amplifiers)
+            {
+                var i = item;
+                var index = i.Number;
+                var offset = ((index - 1) * 8);
+                Debug.Console(2, this, "Amp Output {0} Connect", i.Number);
+                OverCurrentFaultFeedback[index].LinkInputSig(trilist.BooleanInput[joinMap.CurrentFault.JoinNumber + offset]);
+                TemperatureFaultFeedback[index].LinkInputSig(trilist.BooleanInput[joinMap.TempFault.JoinNumber + offset]);
+                DcFaultFeedback[index].LinkInputSig(trilist.BooleanInput[joinMap.DcFault.JoinNumber + offset]);
+                VoltageFaultFeedback[index].LinkInputSig(trilist.BooleanInput[joinMap.VoltageFault.JoinNumber + offset]);
+            }
+
         }
 
         #endregion

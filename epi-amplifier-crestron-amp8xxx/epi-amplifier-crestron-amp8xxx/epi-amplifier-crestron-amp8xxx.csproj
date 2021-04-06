@@ -103,6 +103,7 @@
     <Compile Include="Bridge\CrestronAmplifierDeviceBridge.cs" />
     <Compile Include="Bridge\JoinMaps\CrestronAmplifierJoinMap.cs" />
     <Compile Include="CrestronAmplifierDevice.cs" />
+    <Compile Include="DeviceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Properties\ControlSystem.cfg" />
   </ItemGroup>

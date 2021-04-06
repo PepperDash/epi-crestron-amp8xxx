@@ -7,49 +7,86 @@ using Crestron.SimplSharp.Reflection;
 using PepperDash.Essentials.Core;
 namespace epi_amplifier_crestron_amp8xxx.Bridge.JoinMaps
 {
-    public class CrestronAmplifierJoinMap : JoinMapBase
+    public class CrestronAmplifierJoinMapAdv : JoinMapBaseAdvanced
     {
-        #region Digital
-        public uint Online { get; set; }
-        public uint InputClip { get; set; }
-        public uint OutputClip { get; set; }
-        public uint DcFault { get; set; }
-        public uint VoltageFault { get; set; }
-        public uint CurrentFault { get; set; }
-        public uint TempFault { get; set; }
-        #endregion
-
-        #region Analog
-        public uint Temperature { get; set; }
-        #endregion
-
-        #region Serial
-        public uint Name { get; set; }
-        #endregion
-
-        public CrestronAmplifierJoinMap()
+        public CrestronAmplifierJoinMapAdv(uint joinStart)
+            : base(joinStart, typeof(CrestronAmplifierJoinMapAdv))
         {
-            //Singles
-            Online = 1;
-            Temperature = 1;
-            Name = 1;
-
-            //Array
-            DcFault = 2;
-            VoltageFault = 10;
-            CurrentFault = 18;
-            TempFault = 26;
         }
-        public override void OffsetJoinNumbers(uint joinStart)
-        {
-            Online += joinStart - 1;
-            Temperature += joinStart - 1;
-            Name += joinStart - 1;
-            DcFault += joinStart - 1;
-            VoltageFault += joinStart - 1;
-            CurrentFault += joinStart - 1;
-            TempFault += joinStart - 1;
 
-        }
+        [JoinName("Online")]
+        public JoinDataComplete Online =
+            new JoinDataComplete(new JoinData { JoinNumber = 1, JoinSpan = 1 },
+            new JoinMetadata
+            {
+                Description = "Device Online",
+                JoinCapabilities = eJoinCapabilities.ToSIMPL,
+                JoinType = eJoinType.Digital
+            });
+
+        [JoinName("Temperature")]
+        public JoinDataComplete Temperature =
+            new JoinDataComplete(new JoinData { JoinNumber = 1, JoinSpan = 1 },
+            new JoinMetadata
+            {
+                Description = "Device Temperature",
+                JoinCapabilities = eJoinCapabilities.ToSIMPL,
+                JoinType = eJoinType.Analog
+            });
+
+        [JoinName("Name")]
+        public JoinDataComplete Name =
+            new JoinDataComplete(new JoinData { JoinNumber = 1, JoinSpan = 1 },
+            new JoinMetadata
+            {
+                Description = "Device Name",
+                JoinCapabilities = eJoinCapabilities.ToSIMPL,
+                JoinType = eJoinType.Serial
+            });
+
+        [JoinName("DcFault")]
+        public JoinDataComplete DcFault =
+            new JoinDataComplete(new JoinData { JoinNumber = 2, JoinSpan = 8 },
+            new JoinMetadata
+            {
+                Description = "Device DcFault",
+                JoinCapabilities = eJoinCapabilities.ToSIMPL,
+                JoinType = eJoinType.Digital
+            });
+
+
+        [JoinName("VoltageFault")]
+        public JoinDataComplete VoltageFault =
+            new JoinDataComplete(new JoinData { JoinNumber = 10, JoinSpan = 8 },
+            new JoinMetadata
+            {
+                Description = "Device VoltageFault",
+                JoinCapabilities = eJoinCapabilities.ToSIMPL,
+                JoinType = eJoinType.Digital
+            });
+
+
+        [JoinName("CurrentFault")]
+        public JoinDataComplete CurrentFault =
+            new JoinDataComplete(new JoinData { JoinNumber = 18, JoinSpan = 8 },
+            new JoinMetadata
+            {
+                Description = "Device CurrentFault",
+                JoinCapabilities = eJoinCapabilities.ToSIMPL,
+                JoinType = eJoinType.Digital
+            });
+
+
+        [JoinName("TempFault")]
+        public JoinDataComplete TempFault =
+            new JoinDataComplete(new JoinData { JoinNumber = 26, JoinSpan = 8 },
+            new JoinMetadata
+            {
+                Description = "Device TempFault",
+                JoinCapabilities = eJoinCapabilities.ToSIMPL,
+                JoinType = eJoinType.Digital
+            });
+
+
     }
 }
