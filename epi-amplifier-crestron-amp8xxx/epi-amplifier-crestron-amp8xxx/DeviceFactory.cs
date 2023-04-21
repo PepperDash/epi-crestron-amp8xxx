@@ -45,7 +45,7 @@ namespace epi_amplifier_crestron_amp8xxx
                     .GetCType()
                     .Assembly
                     .GetTypes()
-                    .FirstOrDefault(x => x.Name.Equals(deviceConfig.Model, StringComparison.OrdinalIgnoreCase));
+                    .FirstOrDefault(x => x.Name.Equals(String.IsNullOrEmpty(deviceConfig.Model) ? "amp8150" : deviceConfig.Model, StringComparison.OrdinalIgnoreCase));
 
                 if (ampDeviceType == null) throw new NullReferenceException();
                 if (deviceConfig.Control.IpId == null) throw new Exception("The IPID for this device must be defined");
@@ -57,12 +57,13 @@ namespace epi_amplifier_crestron_amp8xxx
                 var ampDevice = newDevice as Amp8xxxBase;
                 if (ampDevice == null) throw new NullReferenceException("Could not find the base Amplifier type");
 
-
+                
                 return ampDevice;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                Debug.Console(0, "Unable to build amp8xxx device - Exception :{0}", e.Message);
+                return null;
             }
         }
 
